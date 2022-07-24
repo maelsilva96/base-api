@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"auth-api/errorEntity"
 	"fmt"
 	"github.com/go-playground/validator/v10"
+	"github.com/maelsilva96/base-api/entity/errors"
 )
 
 var validate *validator.Validate
@@ -27,7 +27,7 @@ func ValidEntity(entity interface{}, mapFields map[string]string) error {
 			message := getMessageToError(m.Tag(), m.Param())
 			errorMessages[field] = append(errorMessages[field], message)
 		}
-		return errorEntity.NewFieldError(errorMessages)
+		return errors.NewFieldError(errorMessages)
 	}
 	return nil
 }
